@@ -2,11 +2,6 @@
 
 set -e
 
-printf "\nRunning Security Checker ...\n\n"
-curl -sS https://get.symfony.com/cli/installer | bash
-printf "\n"
-~/.symfony/bin/symfony security:check
-
 printf "\nRunning CS Fixer ...\n\n"
 curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o php-cs-fixer
 chmod +x php-cs-fixer
