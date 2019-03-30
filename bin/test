@@ -11,8 +11,10 @@ curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o php-cs-fixer
 chmod a+x php-cs-fixer
 ./php-cs-fixer fix
 
+echo Running PHPUnit ...
+curl -L https://phar.phpunit.de/phpunit-6.5.phar -o phpunit
+chmod +x phpunit
+./phpunit
+
 echo Running PHPStan ...
 vendor/bin/phpstan analyse
-
-echo Running PHPUnit ...
-vendor/bin/phpunit

@@ -1,4 +1,5 @@
 /composer
 /composer.lock
 /php-cs-fixer
+/phpunit
 /vendor/
