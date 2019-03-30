@@ -1,0 +1,20 @@
+{
+    "name": "endroid/test",
+    "description": "Endroid Test",
+    "keywords": ["endroid", "test"],
+    "homepage": "https://github.com/endroid/test",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeroen van den Enden",
+            "email": "info@endroid.nl"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "phpstan/phpstan": "^0.11.5",
+        "phpunit/phpunit": "^5.7|^6.0",
+        "friendsofphp/php-cs-fixer": "^2.14"
+    }
+}
