@@ -12,8 +12,8 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
-        "endroid/installer": "^1.1.1"
+        "php": ">=7.2",
+        "endroid/installer": "^1.1.4"
     },
     "bin": ["bin/test"]
 }

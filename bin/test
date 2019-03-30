@@ -19,4 +19,4 @@ chmod +x phpunit
 echo Running PHPStan ...
 curl -L https://github.com/phpstan/phpstan/releases/download/0.11.5/phpstan.phar -o phpstan
 chmod +x phpstan
-./phpstan analyse
+./phpstan analyse src
