@@ -3,10 +3,13 @@
 set -e
 
 echo Running Security Checker ...
-vendor/bin/security-checker security:check
+curl -sS https://get.symfony.com/cli/installer | bash
+~/.symfony/bin/symfony security:check
 
 echo Running CS Fixer ...
-vendor/bin/php-cs-fixer fix
+curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o php-cs-fixer
+chmod a+x php-cs-fixer
+./php-cs-fixer fix
 
 echo Running PHPStan ...
 vendor/bin/phpstan analyse
