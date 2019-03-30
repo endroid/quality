@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=7.2",
-        "endroid/installer": "^1.1.4"
+        "endroid/installer": "^1.1.5"
     },
     "bin": ["bin/test"]
 }
