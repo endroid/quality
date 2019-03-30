@@ -13,7 +13,6 @@
     ],
     "require": {
         "php": ">=7.1",
-        "phpstan/phpstan": "^0.11.5",
         "endroid/installer": "^1.1.1"
     },
     "bin": ["bin/test"]
