@@ -14,7 +14,7 @@ chmod +x php-cs-fixer
 echo Running PHPUnit ...
 curl -L https://phar.phpunit.de/phpunit-6.5.phar -o phpunit
 chmod +x phpunit
-./phpunit .
+./phpunit -c .
 
 echo Running PHPStan ...
 curl -L https://github.com/phpstan/phpstan/releases/download/0.11.5/phpstan.phar -o phpstan
