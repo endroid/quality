@@ -12,9 +12,8 @@ printf "\nRunning CS Fixer ...\n\n"
 EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer-latest
 
 if [ ! -f $EXECUTABLE_PATH ]; then
-    curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $EXECUTABLE_PATH
+    curl -LsS https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
-    printf "\n"
 fi
 
 $EXECUTABLE_PATH fix src --config=$endroid_test_dir/.php_cs --using-cache=no
@@ -27,9 +26,8 @@ printf "\nRunning PHPUnit ...\n\n"
 EXECUTABLE_PATH=$endroid_test_dir/phpunit-latest
 
 if [ ! -f $EXECUTABLE_PATH ]; then
-    curl -L https://phar.phpunit.de/phpunit.phar -o $EXECUTABLE_PATH
+    curl -LsS https://phar.phpunit.de/phpunit.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
-    printf "\n"
 fi
 
 $EXECUTABLE_PATH tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
@@ -42,9 +40,8 @@ printf "\nRunning PHPStan ...\n\n"
 EXECUTABLE_PATH=$endroid_test_dir/phpstan-latest
 
 if [ ! -f $EXECUTABLE_PATH ]; then
-    curl -L https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar -o $EXECUTABLE_PATH
+    curl -LsS https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
-    printf "\n"
 fi
 
 $EXECUTABLE_PATH analyse src --level=max
