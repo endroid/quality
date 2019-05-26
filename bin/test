@@ -12,7 +12,7 @@ printf "\nRunning Behat ...\n\n"
 EXECUTABLE_PATH=vendor/bin/behat
 
 if [ -f $EXECUTABLE_PATH ]; then
-    $EXECUTABLE_PATH
+    $EXECUTABLE_PATH --stop-on-failure
 fi
 
 
