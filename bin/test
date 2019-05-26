@@ -5,6 +5,17 @@ set -e
 endroid_test_dir=$( dirname $( dirname $(readlink -f $0)))
 
 
+# Behat (if available)
+
+printf "\nRunning Behat ...\n\n"
+
+EXECUTABLE_PATH=vendor/bin/behat
+
+if [ -f $EXECUTABLE_PATH ]; then
+    $EXECUTABLE_PATH
+fi
+
+
 # PHP CS Fixer
 
 printf "\nRunning CS Fixer ...\n\n"
@@ -12,7 +23,7 @@ printf "\nRunning CS Fixer ...\n\n"
 EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer-latest
 
 if [ ! -f $EXECUTABLE_PATH ]; then
-    curl -LsS https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $EXECUTABLE_PATH
+    curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
 fi
 
@@ -26,7 +37,7 @@ printf "\nRunning PHPUnit ...\n\n"
 EXECUTABLE_PATH=$endroid_test_dir/phpunit-latest
 
 if [ ! -f $EXECUTABLE_PATH ]; then
-    curl -LsS https://phar.phpunit.de/phpunit.phar -o $EXECUTABLE_PATH
+    curl -L https://phar.phpunit.de/phpunit.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
 fi
 
@@ -40,7 +51,7 @@ printf "\nRunning PHPStan ...\n\n"
 EXECUTABLE_PATH=$endroid_test_dir/phpstan-latest
 
 if [ ! -f $EXECUTABLE_PATH ]; then
-    curl -LsS https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar -o $EXECUTABLE_PATH
+    curl -L https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
 fi
 
