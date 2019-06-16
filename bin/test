@@ -16,20 +16,6 @@ if [ -f $EXECUTABLE_PATH ]; then
 fi
 
 
-# PHP CS Fixer
-
-printf "\nRunning CS Fixer ...\n\n"
-
-EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer-latest
-
-if [ ! -f $EXECUTABLE_PATH ]; then
-    curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $EXECUTABLE_PATH
-    chmod +x $EXECUTABLE_PATH
-fi
-
-$EXECUTABLE_PATH fix src --config=$endroid_test_dir/.php_cs --using-cache=no
-
-
 # PHPUnit
 
 printf "\nRunning PHPUnit ...\n\n"
@@ -56,3 +42,17 @@ if [ ! -f $EXECUTABLE_PATH ]; then
 fi
 
 $EXECUTABLE_PATH analyse src --level=max
+
+
+# PHP CS Fixer
+
+printf "\nRunning CS Fixer ...\n\n"
+
+EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer-latest
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o $EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+$EXECUTABLE_PATH fix src --config=$endroid_test_dir/.php_cs --using-cache=no
