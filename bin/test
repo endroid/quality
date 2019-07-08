@@ -5,9 +5,9 @@ set -e
 endroid_test_dir=$( dirname $( dirname $(readlink -f $0)))
 
 
-# Behat (if available)
+# Behat (when available)
 
-printf "\nRunning Behat ...\n\n"
+printf "\nRunning Behat (when available) ...\n\n"
 
 EXECUTABLE_PATH=vendor/bin/behat
 
