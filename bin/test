@@ -41,7 +41,7 @@ if [ ! -f $EXECUTABLE_PATH ]; then
     chmod +x $EXECUTABLE_PATH
 fi
 
-$EXECUTABLE_PATH analyse src --level=max
+$EXECUTABLE_PATH analyse src --configuration=$endroid_test_dir/phpstan.neon --level=max
 
 
 # PHP CS Fixer
