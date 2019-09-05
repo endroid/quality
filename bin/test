@@ -5,6 +5,20 @@ set -e
 endroid_test_dir=$( dirname $( dirname $(readlink -f $0)))
 
 
+# Install (using composer)
+
+printf "\nInstalling ...\n\n"
+
+EXECUTABLE_PATH=$endroid_test_dir/composer
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    curl -sS https://getcomposer.org/installer | php -- --filename=$EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+$EXECUTABLE_PATH update --no-interaction --prefer-source $COMPOSER_FLAGS
+
+
 # Behat (when available)
 
 printf "\nRunning Behat (when available) ...\n\n"
