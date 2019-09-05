@@ -3,4 +3,3 @@ parameters:
         - src
     excludes_analyse:
         - */src/Migrations/*
-    inferPrivatePropertyTypeFromConstructor: true
