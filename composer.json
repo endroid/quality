@@ -12,8 +12,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
-        "symfony/var-dumper": "^3.4||^4.0"
+        "php": ">=7.2"
     },
     "bin": ["bin/test"]
 }
