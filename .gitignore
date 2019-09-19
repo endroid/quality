@@ -1,7 +1,7 @@
 /composer
 /composer.lock
-/php-cs-fixer-latest
-/phpstan-latest
-/phpunit-latest
+/php-cs-fixer
+/phpstan
+/phpunit
 /psalm
 /vendor/
