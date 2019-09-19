@@ -30,20 +30,6 @@ fi
 $EXECUTABLE_PATH tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
 
 
-# PHPStan
-
-printf "\nRunning PHPStan ...\n\n"
-
-EXECUTABLE_PATH=$endroid_test_dir/phpstan-latest
-
-if [ ! -f $EXECUTABLE_PATH ]; then
-    curl -L https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar -o $EXECUTABLE_PATH
-    chmod +x $EXECUTABLE_PATH
-fi
-
-$EXECUTABLE_PATH analyse src --configuration=$endroid_test_dir/phpstan.neon --level=max
-
-
 # PHP CS Fixer
 
 printf "\nRunning CS Fixer ...\n\n"
@@ -56,3 +42,33 @@ if [ ! -f $EXECUTABLE_PATH ]; then
 fi
 
 $EXECUTABLE_PATH fix src --config=$endroid_test_dir/.php_cs --using-cache=no
+
+
+# PHPStan
+
+printf "\nRunning PHPStan ...\n\n"
+
+EXECUTABLE_PATH=$endroid_test_dir/phpstan-latest
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    curl -L https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar -o $EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+#$EXECUTABLE_PATH analyse src --configuration=$endroid_test_dir/phpstan.neon --level=max
+
+
+# Psalm
+
+printf "\nRunning Psalm ...\n\n"
+
+EXECUTABLE_PATH=$endroid_test_dir/psalm
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    curl -L https://github.com/vimeo/psalm/releases/download/3.5.1/psalm.phar -o $EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+echo $endroid_test_dir/psalm.xml
+
+$EXECUTABLE_PATH --config=$endroid_test_dir/psalm.xml --show-info=false

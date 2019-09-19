@@ -3,4 +3,5 @@
 /php-cs-fixer-latest
 /phpstan-latest
 /phpunit-latest
+/psalm
 /vendor/
