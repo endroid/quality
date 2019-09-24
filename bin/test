@@ -5,24 +5,12 @@ set -e
 endroid_test_dir=$( dirname $( dirname $(readlink -f $0)))
 
 
-# Behat (when available)
-
-printf "\nRunning Behat (when available) ...\n\n"
-
-EXECUTABLE_PATH=vendor/bin/behat
-
-if [ -f $EXECUTABLE_PATH ]; then
-    $EXECUTABLE_PATH --stop-on-failure
-fi
-
-
 # PHPUnit
-
-printf "\nRunning PHPUnit ...\n\n"
 
 EXECUTABLE_PATH=$endroid_test_dir/phpunit
 
 if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning PHPUnit ...\n\n"
     curl -L https://phar.phpunit.de/phpunit.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
 fi
@@ -32,11 +20,10 @@ $EXECUTABLE_PATH tests --bootstrap vendor/autoload.php --colors=always --do-not-
 
 # PHP CS Fixer
 
-printf "\nRunning CS Fixer ...\n\n"
-
 EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer
 
 if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning CS Fixer ...\n\n"
     curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
 fi
@@ -46,25 +33,23 @@ $EXECUTABLE_PATH fix src --config=$endroid_test_dir/.php_cs --using-cache=no
 
 # PHPStan
 
-printf "\nRunning PHPStan ...\n\n"
-
 EXECUTABLE_PATH=$endroid_test_dir/phpstan
 
 if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning PHPStan ...\n\n"
     curl -L https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
 fi
 
-#$EXECUTABLE_PATH analyse src --configuration=$endroid_test_dir/phpstan.neon --level=max
+$EXECUTABLE_PATH analyse src --configuration=$endroid_test_dir/phpstan.neon --level=max
 
 
 # Psalm
 
-printf "\nRunning Psalm ...\n\n"
-
 EXECUTABLE_PATH=$endroid_test_dir/psalm
 
 if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning Psalm ...\n\n"
     curl -L https://github.com/vimeo/psalm/releases/download/3.5.1/psalm.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
 fi
@@ -72,3 +57,13 @@ fi
 echo $endroid_test_dir/psalm.xml
 
 $EXECUTABLE_PATH --config=$endroid_test_dir/psalm.xml --show-info=false
+
+
+# Behat (when available)
+
+EXECUTABLE_PATH=vendor/bin/behat
+
+if [ -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning Behat ...\n\n"
+    $EXECUTABLE_PATH --stop-on-failure
+fi
