@@ -14,5 +14,5 @@
     "require": {
         "php": ">=7.2"
     },
-    "bin": ["bin/test"]
+    "bin": ["bin/test", "bin/bundle-test"]
 }

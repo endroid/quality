@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+curl -sS https://getcomposer.org/installer | php -- --filename=composer
+
+rm -rf tests/application
+
+php -d memory_limit=-1 composer create-project symfony/website-skeleton tests/application
+
+cp composer tests/application/composer
+cp -r .install/symfony/* tests/application
+
+cp -r vendor/endroid/test/application tests
+
+(
+    cd tests/application
+    bin/phpunit
+)
