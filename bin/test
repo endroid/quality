@@ -5,6 +5,19 @@ set -e
 endroid_test_dir=$( dirname $( dirname $(readlink -f $0)))
 
 
+# PHP CS Fixer
+
+EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning CS Fixer ...\n\n"
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o $EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+$EXECUTABLE_PATH fix src --config=$endroid_test_dir/.php_cs --using-cache=no || true
+
+
 # PHPUnit
 
 EXECUTABLE_PATH=$endroid_test_dir/phpunit
@@ -16,19 +29,6 @@ if [ ! -f $EXECUTABLE_PATH ]; then
 fi
 
 $EXECUTABLE_PATH tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
-
-
-# PHP CS Fixer
-
-EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer
-
-if [ ! -f $EXECUTABLE_PATH ]; then
-    printf "\nRunning CS Fixer ...\n\n"
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o $EXECUTABLE_PATH
-    chmod +x $EXECUTABLE_PATH
-fi
-
-$EXECUTABLE_PATH fix src --config=$endroid_test_dir/.php_cs --using-cache=no
 
 
 # PHPStan
