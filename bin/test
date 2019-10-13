@@ -2,7 +2,13 @@
 
 set -e
 
-endroid_test_dir=$( dirname $( dirname $(readlink -f $0)))
+ENDROID_TEST_DIR=$( dirname $( dirname $(readlink -f $0)))
+
+
+# Use Github Actions instead of Travis
+
+cp -r $ENDROID_TEST_DIR/.github .
+rm -rf .travis.yml
 
 
 # Behat and PHPUnit (when available)
@@ -17,7 +23,7 @@ fi
 
 # PHP CS Fixer
 
-EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer
+EXECUTABLE_PATH=$ENDROID_TEST_DIR/php-cs-fixer
 
 if [ ! -f $EXECUTABLE_PATH ]; then
     printf "\nRunning CS Fixer ...\n\n"
@@ -25,12 +31,12 @@ if [ ! -f $EXECUTABLE_PATH ]; then
     chmod +x $EXECUTABLE_PATH
 fi
 
-$EXECUTABLE_PATH fix src --config=$endroid_test_dir/.php_cs --using-cache=no || true
+$EXECUTABLE_PATH fix src --config=$ENDROID_TEST_DIR/.php_cs --using-cache=no || true
 
 
 # PHPUnit
 
-EXECUTABLE_PATH=$endroid_test_dir/phpunit
+EXECUTABLE_PATH=$ENDROID_TEST_DIR/phpunit
 
 if [ ! -f $EXECUTABLE_PATH ]; then
     printf "\nRunning PHPUnit ...\n\n"
@@ -43,7 +49,7 @@ $EXECUTABLE_PATH tests --bootstrap vendor/autoload.php --colors=always --do-not-
 
 # PHPStan
 
-EXECUTABLE_PATH=$endroid_test_dir/phpstan
+EXECUTABLE_PATH=$ENDROID_TEST_DIR/phpstan
 
 if [ ! -f $EXECUTABLE_PATH ]; then
     printf "\nRunning PHPStan ...\n\n"
@@ -56,7 +62,7 @@ $EXECUTABLE_PATH analyse src --configuration=$endroid_test_dir/phpstan.neon --le
 
 # Psalm
 
-EXECUTABLE_PATH=$endroid_test_dir/psalm
+EXECUTABLE_PATH=$ENDROID_TEST_DIR/psalm
 
 if [ ! -f $EXECUTABLE_PATH ]; then
     printf "\nRunning Psalm ...\n\n"
@@ -66,4 +72,4 @@ fi
 
 echo $endroid_test_dir/psalm.xml
 
-$EXECUTABLE_PATH --config=$endroid_test_dir/psalm.xml --show-info=false
+$EXECUTABLE_PATH --config=$ENDROID_TEST_DIR/psalm.xml --show-info=false

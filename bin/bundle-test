@@ -8,10 +8,6 @@ BUNDLE_PATH=`pwd`
 APPLICATION_PATH="../application"
 COMPOSER="php -d memory_limit=-1 composer"
 
-echo $BUNDLE_PATH
-echo $APPLICATION_PATH
-echo $COMPOSER
-
 rm -rf ../application
 
 $COMPOSER create-project --no-progress symfony/website-skeleton $APPLICATION_PATH
