@@ -4,16 +4,18 @@ set -e
 
 curl -sS https://getcomposer.org/installer | php -- --filename=composer
 
-rm -rf tests/application
+rm -rf ../application
 
-php -d memory_limit=-1 composer create-project symfony/website-skeleton tests/application
+php -d memory_limit=-1 composer create-project symfony/website-skeleton ../application
 
-cp composer tests/application/composer
-cp -r .install/symfony/* tests/application
-
-cp -r vendor/endroid/test/application tests
+cp composer ../application/composer
+cp -r vendor/endroid/test/application ..
 
 (
-    cd tests/application
+    cd ../application
+    composer config minimum-stability dev
+    composer config prefer-stable true
+    composer config repositories.adventure-bundle path ../adventure-bundle
+    composer require endroid/adventure-bundle:dev-master
     bin/phpunit
 )
