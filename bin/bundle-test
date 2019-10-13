@@ -24,6 +24,6 @@ ls -als
     $COMPOSER config prefer-stable true
     $COMPOSER config repositories.adventure-bundle path $BUNDLE_PATH
     cat composer.json
-    $COMPOSER require endroid/adventure-bundle:dev-master
+    $COMPOSER require endroid/adventure-bundle @dev
     bin/phpunit
 )
