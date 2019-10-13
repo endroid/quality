@@ -15,12 +15,15 @@ $COMPOSER create-project --no-progress symfony/website-skeleton $APPLICATION_PAT
 cp composer $APPLICATION_PATH/composer
 cp -r vendor/endroid/test/application ..
 
+ls -als
+
 (
     cd $APPLICATION_PATH
     $COMPOSER config extra.symfony.allow-contrib true
     $COMPOSER config minimum-stability dev
     $COMPOSER config prefer-stable true
     $COMPOSER config repositories.adventure-bundle path $BUNDLE_PATH
+    cat composer.json
     $COMPOSER require endroid/adventure-bundle:dev-master
     bin/phpunit
 )
