@@ -5,6 +5,16 @@ set -e
 endroid_test_dir=$( dirname $( dirname $(readlink -f $0)))
 
 
+# Behat and PHPUnit (when available)
+
+EXECUTABLE_PATH=vendor/bin/bundle-test
+
+if [ -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning Bundle Tests ...\n\n"
+    $EXECUTABLE_PATH
+fi
+
+
 # PHP CS Fixer
 
 EXECUTABLE_PATH=$endroid_test_dir/php-cs-fixer
@@ -57,13 +67,3 @@ fi
 echo $endroid_test_dir/psalm.xml
 
 $EXECUTABLE_PATH --config=$endroid_test_dir/psalm.xml --show-info=false
-
-
-# Behat (when available)
-
-EXECUTABLE_PATH=vendor/bin/behat
-
-if [ -f $EXECUTABLE_PATH ]; then
-    printf "\nRunning Behat ...\n\n"
-    $EXECUTABLE_PATH --stop-on-failure
-fi
