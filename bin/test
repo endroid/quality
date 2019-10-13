@@ -11,16 +11,6 @@ cp -r $ENDROID_TEST_DIR/.github .
 rm -rf .travis.yml
 
 
-# Behat and PHPUnit (when available)
-
-EXECUTABLE_PATH=vendor/bin/bundle-test
-
-if [ -f $EXECUTABLE_PATH ]; then
-    printf "\nRunning Bundle Tests ...\n\n"
-    $EXECUTABLE_PATH
-fi
-
-
 # PHP CS Fixer
 
 EXECUTABLE_PATH=$ENDROID_TEST_DIR/php-cs-fixer
@@ -73,3 +63,13 @@ fi
 echo $endroid_test_dir/psalm.xml
 
 $EXECUTABLE_PATH --config=$ENDROID_TEST_DIR/psalm.xml --show-info=false
+
+
+# Behat and PHPUnit (when available)
+
+EXECUTABLE_PATH=vendor/bin/bundle-test
+
+if [ -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning Bundle Tests ...\n\n"
+    $EXECUTABLE_PATH
+fi
