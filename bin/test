@@ -25,19 +25,6 @@ fi
 $EXECUTABLE_PATH fix src --config=$ENDROID_TEST_DIR/.php_cs --using-cache=no || true
 
 
-# PHPUnit
-
-EXECUTABLE_PATH=$ENDROID_TEST_DIR/phpunit
-
-if [ ! -f $EXECUTABLE_PATH ]; then
-    printf "\nRunning PHPUnit ...\n\n"
-    curl -L https://phar.phpunit.de/phpunit.phar -o $EXECUTABLE_PATH
-    chmod +x $EXECUTABLE_PATH
-fi
-
-$EXECUTABLE_PATH tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
-
-
 # PHPStan
 
 EXECUTABLE_PATH=$ENDROID_TEST_DIR/phpstan
@@ -62,6 +49,19 @@ if [ ! -f $EXECUTABLE_PATH ]; then
 fi
 
 $EXECUTABLE_PATH --config=$ENDROID_TEST_DIR/psalm.xml --show-info=false
+
+
+# PHPUnit
+
+EXECUTABLE_PATH=$ENDROID_TEST_DIR/phpunit
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning PHPUnit ...\n\n"
+    curl -L https://phar.phpunit.de/phpunit.phar -o $EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+$EXECUTABLE_PATH tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
 
 
 # Functional tests (when available)
