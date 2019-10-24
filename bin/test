@@ -5,9 +5,10 @@ set -e
 ENDROID_TEST_DIR=$( dirname $( dirname $(readlink -f $0)))
 
 
-# Use Github Actions instead of Travis
-
+# Use Github Actions
 cp -r $ENDROID_TEST_DIR/.github .
+
+# Do not use Redis
 rm -rf .travis.yml
 
 
