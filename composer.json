@@ -14,5 +14,8 @@
     "require": {
         "php": ">=7.2"
     },
-    "bin": ["bin/test", "bin/bundle-test"]
+    "bin": ["bin/test", "bin/bundle-test"],
+    "config": {
+        "sort-packages": true
+    }
 }
