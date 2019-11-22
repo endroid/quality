@@ -2,6 +2,8 @@
 
 set -e
 
+exit
+
 # Functional tests (when available)
 
 EXECUTABLE_PATH=vendor/bin/bundle-test
