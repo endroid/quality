@@ -5,32 +5,32 @@ set -e
 
 # PHP CS Fixer
 
-if [ ! -f vendor/endroid/test/php-cs-fixer ]; then
+if [ ! -f vendor/bin/php-cs-fixer ]; then
     printf "\nRunning CS Fixer ...\n\n"
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o vendor/endroid/test/php-cs-fixer
-    chmod +x vendor/endroid/test/php-cs-fixer
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
+    chmod +x vendor/bin/php-cs-fixer
 fi
 
-vendor/endroid/test/php-cs-fixer fix src --config=vendor/endroid/test/.php_cs --using-cache=no || true
+vendor/bin/php-cs-fixer fix src --config=vendor/bin/.php_cs --using-cache=no || true
 
 
 # PHPStan
 
-if [ ! -f vendor/endroid/test/phpstan ]; then
+if [ ! -f vendor/bin/phpstan ]; then
     printf "\nRunning PHPStan ...\n\n"
-    curl -L https://github.com/phpstan/phpstan/releases/download/0.11.19/phpstan.phar -o vendor/endroid/test/phpstan
-    chmod +x vendor/endroid/test/phpstan
+    curl -L https://github.com/phpstan/phpstan/releases/download/0.11.19/phpstan.phar -o vendor/bin/phpstan
+    chmod +x vendor/bin/phpstan
 fi
 
-vendor/endroid/test/phpstan analyse src --configuration=vendor/endroid/test/phpstan.neon --level=max
+vendor/bin/phpstan analyse src --configuration=vendor/bin/phpstan.neon --level=max
 
 
 # Psalm
 
-if [ ! -f vendor/endroid/test/psalm ]; then
+if [ ! -f vendor/bin/psalm ]; then
     printf "\nRunning Psalm ...\n\n"
-    curl -L https://github.com/vimeo/psalm/releases/download/3.5.1/psalm.phar -o vendor/endroid/test/psalm
-    chmod +x vendor/endroid/test/psalm
+    curl -L https://github.com/vimeo/psalm/releases/download/3.5.1/psalm.phar -o vendor/bin/psalm
+    chmod +x vendor/bin/psalm
 fi
 
-vendor/endroid/test/psalm --config=vendor/endroid/test/psalm.xml --show-info=false
+vendor/bin/psalm --config=vendor/bin/psalm.xml --show-info=false

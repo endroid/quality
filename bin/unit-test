@@ -2,10 +2,15 @@
 
 set -e
 
-if [ ! -f bin/phpunit ]; then
-    printf "\nRunning PHPUnit ...\n\n"
-    curl -L https://phar.phpunit.de/phpunit-8.4.phar -o bin/phpunit
-    chmod +x bin/phpunit
+if [ -f bin/phpunit ]; then
+    bin/phpunit
+    exit
 fi
 
-bin/phpunit tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
+if [ ! -f vendor/bin/phpunit ]; then
+    printf "\nRunning PHPUnit ...\n\n"
+    curl -L https://phar.phpunit.de/phpunit-8.4.phar -o vendor/bin/phpunit
+    chmod +x vendor/bin/phpunit
+fi
+
+vendor/bin/phpunit tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
