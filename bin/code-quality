@@ -5,38 +5,32 @@ set -e
 
 # PHP CS Fixer
 
-EXECUTABLE_PATH=$ENDROID_TEST_DIR/php-cs-fixer
-
-if [ ! -f $EXECUTABLE_PATH ]; then
+if [ ! -f vendor/endroid/test/php-cs-fixer ]; then
     printf "\nRunning CS Fixer ...\n\n"
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o $EXECUTABLE_PATH
-    chmod +x $EXECUTABLE_PATH
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o vendor/endroid/test/php-cs-fixer
+    chmod +x vendor/endroid/test/php-cs-fixer
 fi
 
-$EXECUTABLE_PATH fix src --config=$ENDROID_TEST_DIR/.php_cs --using-cache=no || true
+vendor/endroid/test/php-cs-fixer fix src --config=vendor/endroid/test/.php_cs --using-cache=no || true
 
 
 # PHPStan
 
-EXECUTABLE_PATH=$ENDROID_TEST_DIR/phpstan
-
-if [ ! -f $EXECUTABLE_PATH ]; then
+if [ ! -f vendor/endroid/test/phpstan ]; then
     printf "\nRunning PHPStan ...\n\n"
-    curl -L https://github.com/phpstan/phpstan/releases/download/0.11.19/phpstan.phar -o $EXECUTABLE_PATH
-    chmod +x $EXECUTABLE_PATH
+    curl -L https://github.com/phpstan/phpstan/releases/download/0.11.19/phpstan.phar -o vendor/endroid/test/phpstan
+    chmod +x vendor/endroid/test/phpstan
 fi
 
-$EXECUTABLE_PATH analyse src --configuration=$ENDROID_TEST_DIR/phpstan.neon --level=max
+vendor/endroid/test/phpstan analyse src --configuration=vendor/endroid/test/phpstan.neon --level=max
 
 
 # Psalm
 
-EXECUTABLE_PATH=$ENDROID_TEST_DIR/psalm
-
-if [ ! -f $EXECUTABLE_PATH ]; then
+if [ ! -f vendor/endroid/test/psalm ]; then
     printf "\nRunning Psalm ...\n\n"
-    curl -L https://github.com/vimeo/psalm/releases/download/3.5.1/psalm.phar -o $EXECUTABLE_PATH
-    chmod +x $EXECUTABLE_PATH
+    curl -L https://github.com/vimeo/psalm/releases/download/3.5.1/psalm.phar -o vendor/endroid/test/psalm
+    chmod +x vendor/endroid/test/psalm
 fi
 
-$EXECUTABLE_PATH --config=$ENDROID_TEST_DIR/psalm.xml --show-info=false
+vendor/endroid/test/psalm --config=vendor/endroid/test/psalm.xml --show-info=false
