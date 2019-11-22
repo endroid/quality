@@ -57,7 +57,7 @@ EXECUTABLE_PATH=$ENDROID_TEST_DIR/phpunit
 
 if [ ! -f $EXECUTABLE_PATH ]; then
     printf "\nRunning PHPUnit ...\n\n"
-    curl -L https://phar.phpunit.de/phpunit.phar -o $EXECUTABLE_PATH
+    curl -L https://phar.phpunit.de/phpunit-8.4.phar -o $EXECUTABLE_PATH
     chmod +x $EXECUTABLE_PATH
 fi
 
