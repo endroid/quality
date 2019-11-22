@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -e
+
+
+# PHP CS Fixer
+
+EXECUTABLE_PATH=$ENDROID_TEST_DIR/php-cs-fixer
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning CS Fixer ...\n\n"
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o $EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+$EXECUTABLE_PATH fix src --config=$ENDROID_TEST_DIR/.php_cs --using-cache=no || true
+
+
+# PHPStan
+
+EXECUTABLE_PATH=$ENDROID_TEST_DIR/phpstan
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning PHPStan ...\n\n"
+    curl -L https://github.com/phpstan/phpstan/releases/download/0.11.19/phpstan.phar -o $EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+$EXECUTABLE_PATH analyse src --configuration=$ENDROID_TEST_DIR/phpstan.neon --level=max
+
+
+# Psalm
+
+EXECUTABLE_PATH=$ENDROID_TEST_DIR/psalm
+
+if [ ! -f $EXECUTABLE_PATH ]; then
+    printf "\nRunning Psalm ...\n\n"
+    curl -L https://github.com/vimeo/psalm/releases/download/3.5.1/psalm.phar -o $EXECUTABLE_PATH
+    chmod +x $EXECUTABLE_PATH
+fi
+
+$EXECUTABLE_PATH --config=$ENDROID_TEST_DIR/psalm.xml --show-info=false

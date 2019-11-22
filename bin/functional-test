@@ -2,6 +2,16 @@
 
 set -e
 
+# Functional tests (when available)
+
+EXECUTABLE_PATH=vendor/bin/bundle-test
+
+if [[ `basename "$PWD"` == *"-bundle" ]]; then
+    printf "\nRunning functional tests (building application) ...\n\n"
+    $EXECUTABLE_PATH
+fi
+
+
 curl -sS https://getcomposer.org/installer | php -- --filename=composer
 
 BUNDLE_PATH=`pwd`

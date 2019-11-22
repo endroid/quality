@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ! -f bin/phpunit ]; then
+    printf "\nRunning PHPUnit ...\n\n"
+    curl -L https://phar.phpunit.de/phpunit-8.4.phar -o bin/phpunit
+    chmod +x bin/phpunit
+fi
+
+bin/phpunit tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
