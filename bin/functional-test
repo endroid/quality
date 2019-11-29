@@ -3,31 +3,35 @@
 set -e
 
 if [[ `basename "$PWD"` == *"-bundle" ]]; then
+
     echo "Running functional tests ..."
+    curl -sS https://getcomposer.org/installer | php -- --filename=composer
+
+    BUNDLE_PATH=`pwd`
+    APPLICATION_PATH=`pwd`/vendor/endroid/test/application
+    COMPOSER="php -d memory_limit=-1 composer"
+    SYMFONY_VERSION=^5.0
+
+    if [ ! -z $1 ]; then
+        SYMFONY_VERSION=$1
+    fi
+
+    rm -rf $APPLICATION_PATH
+
+    $COMPOSER create-project --no-progress symfony/website-skeleton:$SYMFONY_VERSION $APPLICATION_PATH
+
+    cp composer $APPLICATION_PATH/composer
+    cp -r tests/application "$(dirname "$APPLICATION_PATH")"
+    mkdir -p $APPLICATION_PATH/vendor/endroid
+    rsync -a --exclude tests --exclude vendor $BUNDLE_PATH $APPLICATION_PATH/vendor/endroid
+
+    (
+        cd $APPLICATION_PATH
+        $COMPOSER config extra.symfony.allow-contrib true
+        $COMPOSER config prefer-stable true
+        $COMPOSER config repositories.qr-code-bundle path $APPLICATION_PATH/vendor/endroid/qr-code-bundle
+        $COMPOSER require endroid/qr-code-bundle @dev
+        bin/phpunit
+    )
+
 fi
-
-
-curl -sS https://getcomposer.org/installer | php -- --filename=composer
-
-BUNDLE_PATH=`pwd`
-APPLICATION_PATH=`pwd`/vendor/endroid/test/application
-COMPOSER="php -d memory_limit=-1 composer"
-SYMFONY_VERSION="^5.0"
-
-rm -rf $APPLICATION_PATH
-
-$COMPOSER create-project --no-progress symfony/website-skeleton:$SYMFONY_VERSION $APPLICATION_PATH
-
-cp composer $APPLICATION_PATH/composer
-cp -r tests/application "$(dirname "$APPLICATION_PATH")"
-mkdir -p $APPLICATION_PATH/vendor/endroid/qr-code-bundle
-rsync -a --exclude tests --exclude vendor $BUNDLE_PATH $APPLICATION_PATH/vendor/endroid/qr-code-bundle
-
-(
-    cd $APPLICATION_PATH
-    $COMPOSER config extra.symfony.allow-contrib true
-    $COMPOSER config prefer-stable true
-    $COMPOSER config repositories.qr-code-bundle path $APPLICATION_PATH/vendor/endroid/qr-code-bundle
-    $COMPOSER require endroid/qr-code-bundle @dev
-    bin/phpunit
-)
