@@ -2,37 +2,32 @@
 
 set -e
 
-exit
-
-# Functional tests (when available)
-
-EXECUTABLE_PATH=vendor/bin/bundle-test
-
 if [[ `basename "$PWD"` == *"-bundle" ]]; then
-    printf "\nRunning functional tests (building application) ...\n\n"
-    $EXECUTABLE_PATH
+    echo "Running functional tests ..."
 fi
 
 
 curl -sS https://getcomposer.org/installer | php -- --filename=composer
 
 BUNDLE_PATH=`pwd`
-APPLICATION_PATH="../application"
+APPLICATION_PATH=`pwd`/vendor/endroid/test/application
 COMPOSER="php -d memory_limit=-1 composer"
+SYMFONY_VERSION="^5.0"
 
-rm -rf ../application
+rm -rf $APPLICATION_PATH
 
-$COMPOSER create-project --no-progress symfony/website-skeleton $APPLICATION_PATH
+$COMPOSER create-project --no-progress symfony/website-skeleton:$SYMFONY_VERSION $APPLICATION_PATH
 
 cp composer $APPLICATION_PATH/composer
-cp -r vendor/endroid/test/application ..
+cp -r tests/application "$(dirname "$APPLICATION_PATH")"
+mkdir -p $APPLICATION_PATH/vendor/endroid/qr-code-bundle
+rsync -a --exclude tests --exclude vendor $BUNDLE_PATH $APPLICATION_PATH/vendor/endroid/qr-code-bundle
 
 (
     cd $APPLICATION_PATH
     $COMPOSER config extra.symfony.allow-contrib true
-    $COMPOSER config minimum-stability dev
     $COMPOSER config prefer-stable true
-    $COMPOSER config repositories.adventure-bundle path $BUNDLE_PATH
-    $COMPOSER require endroid/adventure-bundle @dev
+    $COMPOSER config repositories.qr-code-bundle path $APPLICATION_PATH/vendor/endroid/qr-code-bundle
+    $COMPOSER require endroid/qr-code-bundle @dev
     bin/phpunit
 )

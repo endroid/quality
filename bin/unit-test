@@ -13,4 +13,4 @@ if [ ! -f vendor/bin/phpunit ]; then
     chmod +x vendor/bin/phpunit
 fi
 
-vendor/bin/phpunit tests --bootstrap vendor/autoload.php --colors=always --do-not-cache-result
+vendor/bin/phpunit -c vendor/endroid/test/phpunit.xml.dist
