@@ -7,7 +7,7 @@ set -e
 
 if [ ! -f vendor/bin/php-cs-fixer ]; then
     printf "\nRunning CS Fixer ...\n\n"
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.3/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.1/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
     chmod +x vendor/bin/php-cs-fixer
 fi
 
