@@ -8,6 +8,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
     curl -sS https://getcomposer.org/installer | php -- --filename=composer
 
     BUNDLE_PATH=`pwd`
+    BUNDLE_NAME=endroid/"$(basename "$BUNDLE_PATH")"
     APPLICATION_PATH=`pwd`/vendor/endroid/test/application
     COMPOSER="php -d memory_limit=-1 composer"
     SYMFONY_VERSION=^5.0
@@ -29,8 +30,8 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
         cd $APPLICATION_PATH
         $COMPOSER config extra.symfony.allow-contrib true
         $COMPOSER config prefer-stable true
-        $COMPOSER config repositories.qr-code-bundle path $APPLICATION_PATH/vendor/endroid/qr-code-bundle
-        $COMPOSER require endroid/qr-code-bundle @dev
+        $COMPOSER config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
+        $COMPOSER require $BUNDLE_NAME @dev
         bin/phpunit
     )
 
