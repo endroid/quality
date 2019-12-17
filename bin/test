@@ -2,7 +2,7 @@
 
 set -e
 
-cp -r vendor/endroid/test/.github .
+cp -r vendor/endroid/test/defaults/. .
 rm -rf .travis.yml
 
 vendor/bin/code-quality

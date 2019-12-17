@@ -13,4 +13,4 @@ if [ ! -f vendor/bin/phpunit ]; then
     chmod +x vendor/bin/phpunit
 fi
 
-php -d pcov.enabled=1 vendor/bin/phpunit -c vendor/endroid/test/phpunit.xml.dist --testdox --coverage-clover=coverage.xml --coverage-html=coverage
+php -d pcov.enabled=1 vendor/bin/phpunit -c vendor/endroid/test/phpunit.xml.dist --testdox --coverage-html=tests/coverage
