@@ -13,4 +13,4 @@ if [ ! -f vendor/bin/phpunit ]; then
     chmod +x vendor/bin/phpunit
 fi
 
-php -c vendor/endroid/test/phpunit-php.ini vendor/bin/phpunit -c vendor/endroid/test/phpunit.xml.dist --testdox --coverage-html=tests/coverage
+php -c vendor/endroid/test/zzz-phpunit-php.ini vendor/bin/phpunit -c vendor/endroid/test/phpunit.xml.dist --testdox --coverage-html=tests/coverage
