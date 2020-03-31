@@ -2,7 +2,6 @@
 
 set -e
 
-
 # PHP CS Fixer
 
 if [ ! -f vendor/bin/php-cs-fixer ]; then
