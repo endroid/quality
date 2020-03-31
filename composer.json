@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": ">=7.2",
+        "endroid/installer": "^1.2",
         "symfony/var-dumper": "^3.4||^4.4||^5.0"
     },
     "bin": [
