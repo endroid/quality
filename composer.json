@@ -1,8 +1,8 @@
 {
-    "name": "endroid/test",
-    "description": "Endroid Test",
-    "keywords": ["endroid", "test"],
-    "homepage": "https://github.com/endroid/test",
+    "name": "endroid/quality",
+    "description": "Endroid Quality",
+    "keywords": ["endroid", "quality"],
+    "homepage": "https://github.com/endroid/quality",
     "type": "library",
     "license": "MIT",
     "authors": [
