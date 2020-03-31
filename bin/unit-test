@@ -14,4 +14,4 @@ if [ ! -f vendor/bin/phpunit ]; then
 fi
 
 
-php -d pcov.enabled=1 vendor/bin/phpunit -c vendor/endroid/test/phpunit.xml.dist --testdox --coverage-html=tests/coverage
+php -d pcov.enabled=1 vendor/bin/phpunit -c vendor/endroid/quality/phpunit.xml.dist --testdox --coverage-html=tests/coverage

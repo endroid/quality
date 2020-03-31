@@ -2,7 +2,7 @@
 
 set -e
 
-cp -r vendor/endroid/test/defaults/. .
+cp -r vendor/endroid/quality/defaults/. .
 rm -rf .travis.yml
 
 vendor/bin/security
