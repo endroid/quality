@@ -5,7 +5,6 @@ set -e
 cp -r vendor/endroid/quality/defaults/. .
 rm -rf .travis.yml
 
-vendor/bin/security
 vendor/bin/code-quality
 vendor/bin/unit-test
 vendor/bin/functional-test
