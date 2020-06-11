@@ -11,7 +11,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
     BUNDLE_NAME=endroid/"$(basename "$BUNDLE_PATH")"
     APPLICATION_PATH=`pwd`/vendor/endroid/quality/application
     COMPOSER="php -d memory_limit=-1 composer"
-    SYMFONY_VERSION=^5.0
+    SYMFONY_VERSION=^5.1
 
     if [ ! -z $1 ]; then
         SYMFONY_VERSION=$1
