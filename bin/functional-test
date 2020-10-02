@@ -5,7 +5,7 @@ set -e
 if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     echo "Running functional tests ..."
-    curl -sS https://getcomposer.org/installer | php -- --filename=composer
+    curl -sS https://getcomposer.org/installer | php -- --filename=composer --version=2.0.0-RC1
 
     BUNDLE_PATH=`pwd`
     BUNDLE_NAME=endroid/"$(basename "$BUNDLE_PATH")"
