@@ -6,7 +6,7 @@ set -e
 
 if [ ! -f vendor/bin/php-cs-fixer ]; then
     printf "\nRunning CS Fixer ...\n\n"
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.1/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.7/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
     chmod +x vendor/bin/php-cs-fixer
 fi
 
@@ -17,7 +17,7 @@ fi
 
 if [ ! -f vendor/bin/phpstan ]; then
     printf "\nRunning PHPStan ...\n\n"
-    curl -L https://github.com/phpstan/phpstan/releases/download/0.11.19/phpstan.phar -o vendor/bin/phpstan
+    curl -L https://github.com/phpstan/phpstan/releases/download/0.12.54/phpstan.phar -o vendor/bin/phpstan
     chmod +x vendor/bin/phpstan
 fi
 
@@ -28,7 +28,7 @@ vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.ne
 
 if [ ! -f vendor/bin/psalm ]; then
     printf "\nRunning Psalm ...\n\n"
-    curl -L https://github.com/vimeo/psalm/releases/download/3.5.1/psalm.phar -o vendor/bin/psalm
+    curl -L https://github.com/vimeo/psalm/releases/download/4.1.1/psalm.phar -o vendor/bin/psalm
     chmod +x vendor/bin/psalm
 fi
 
