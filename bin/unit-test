@@ -9,7 +9,7 @@ fi
 
 if [ ! -f vendor/bin/phpunit ]; then
     printf "\nRunning PHPUnit ...\n\n"
-    curl -L https://phar.phpunit.de/phpunit-8.4.phar -o vendor/bin/phpunit
+    curl -L https://phar.phpunit.de/phpunit-9.4.phar -o vendor/bin/phpunit
     chmod +x vendor/bin/phpunit
 fi
 
