@@ -4,14 +4,15 @@ set -e
 
 # PHP CS Fixer
 
-if [ ! -f vendor/bin/php-cs-fixer ]; then
-    printf "\nRunning CS Fixer ...\n\n"
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.7/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
-    chmod +x vendor/bin/php-cs-fixer
+if php -v | grep -q 'PHP 7'; then
+    if [ ! -f vendor/bin/php-cs-fixer ]; then
+        printf "\nRunning CS Fixer ...\n\n"
+        curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.7/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
+        chmod +x vendor/bin/php-cs-fixer
+    fi
+
+    vendor/bin/php-cs-fixer fix src --config=vendor/endroid/quality/.php_cs --using-cache=no || true
 fi
-
-#vendor/bin/php-cs-fixer fix src --config=vendor/endroid/quality/.php_cs --using-cache=no || true
-
 
 # PHPStan
 
