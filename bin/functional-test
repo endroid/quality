@@ -18,7 +18,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     rm -rf $APPLICATION_PATH
 
-    ./composer create-project --no-progress symfony/website-skeleton:$SYMFONY_VERSION $APPLICATION_PATH
+    composer create-project --no-progress symfony/website-skeleton:$SYMFONY_VERSION $APPLICATION_PATH
 
     cp composer $APPLICATION_PATH/composer
     cp -r tests/application "$(dirname "$APPLICATION_PATH")"
@@ -27,10 +27,10 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     (
         cd $APPLICATION_PATH
-        ./composer config extra.symfony.allow-contrib true
-        ./composer config prefer-stable true
-        ./composer config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
-        ./composer require $BUNDLE_NAME @dev
+        composer config extra.symfony.allow-contrib true
+        composer config prefer-stable true
+        composer config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
+        composer require $BUNDLE_NAME @dev
 
         if [ "$1" = "^3.4" ]; then
             sed -i 's/excluded_http_codes/#excluded_http_codes/g' $APPLICATION_PATH/config/packages/test/monolog.yaml

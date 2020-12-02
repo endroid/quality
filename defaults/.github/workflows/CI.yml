@@ -50,7 +50,7 @@ jobs:
 
       - name: Test against lowest versions
         run: |
-          ./composer update --prefer-lowest
+          composer update --prefer-lowest
           vendor/bin/unit-test
           vendor/bin/functional-test ^3.4
 
