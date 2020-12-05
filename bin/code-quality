@@ -27,10 +27,12 @@ vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.ne
 
 # Psalm
 
-if [ ! -f vendor/bin/psalm ]; then
-    printf "\nRunning Psalm ...\n\n"
-    curl -L https://github.com/vimeo/psalm/releases/download/4.1.1/psalm.phar -o vendor/bin/psalm
-    chmod +x vendor/bin/psalm
-fi
+if ! php -v | grep -q 'PHP 7.3'; then
+    if [ ! -f vendor/bin/psalm ]; then
+        printf "\nRunning Psalm ...\n\n"
+        curl -L https://github.com/vimeo/psalm/releases/download/4.1.1/psalm.phar -o vendor/bin/psalm
+        chmod +x vendor/bin/psalm
+    fi
 
-vendor/bin/psalm --config=vendor/endroid/quality/psalm.xml --show-info=false
+    vendor/bin/psalm --config=vendor/endroid/quality/psalm.xml --show-info=false
+fi
