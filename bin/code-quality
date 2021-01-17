@@ -11,7 +11,7 @@ if php -v | grep -q 'PHP 7'; then
         chmod +x vendor/bin/php-cs-fixer
     fi
 
-    vendor/bin/php-cs-fixer fix src --config=vendor/endroid/quality/.php_cs --using-cache=no || true
+    vendor/bin/php-cs-fixer fix src tests --config=vendor/endroid/quality/.php_cs --using-cache=no || true
 fi
 
 # PHPStan
