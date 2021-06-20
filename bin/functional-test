@@ -9,7 +9,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
     BUNDLE_PATH=`pwd`
     BUNDLE_NAME=endroid/"$(basename "$BUNDLE_PATH")"
     APPLICATION_PATH=`pwd`/vendor/endroid/quality/application
-    SYMFONY_VERSION=^5.2
+    SYMFONY_VERSION=^5.3
 
     if [ ! -z $1 ]; then
         SYMFONY_VERSION=$1
@@ -19,7 +19,8 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     composer create-project --no-progress symfony/website-skeleton:$SYMFONY_VERSION $APPLICATION_PATH
 
-    cp -r tests/application "$(dirname "$APPLICATION_PATH")"
+    cp -r vendor/endroid/quality/application-base/* $APPLICATION_PATH
+    cp -r tests/application/* $APPLICATION_PATH
     mkdir -p $APPLICATION_PATH/vendor/endroid
     rsync -a --exclude tests --exclude vendor $BUNDLE_PATH $APPLICATION_PATH/vendor/endroid
 
