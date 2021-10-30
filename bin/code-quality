@@ -6,7 +6,7 @@ set -e
 
 if [ ! -f vendor/bin/php-cs-fixer ]; then
     printf "\nRunning CS Fixer ...\n\n"
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.18.1/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.2.1/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
     chmod +x vendor/bin/php-cs-fixer
 fi
 
@@ -16,7 +16,7 @@ vendor/bin/php-cs-fixer fix src tests --config=vendor/endroid/quality/.php_cs --
 
 if [ ! -f vendor/bin/phpstan ]; then
     printf "\nRunning PHPStan ...\n\n"
-    curl -L https://github.com/phpstan/phpstan/releases/download/0.12.54/phpstan.phar -o vendor/bin/phpstan
+    curl -L https://github.com/phpstan/phpstan/releases/download/0.12.99/phpstan.phar -o vendor/bin/phpstan
     chmod +x vendor/bin/phpstan
 fi
 
@@ -25,12 +25,10 @@ vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.ne
 
 # Psalm
 
-if ! php -v | grep -q 'PHP 7.3'; then
-    if [ ! -f vendor/bin/psalm ]; then
-        printf "\nRunning Psalm ...\n\n"
-        curl -L https://github.com/vimeo/psalm/releases/download/4.1.1/psalm.phar -o vendor/bin/psalm
-        chmod +x vendor/bin/psalm
-    fi
-
-    vendor/bin/psalm --config=vendor/endroid/quality/psalm.xml --show-info=false
+if [ ! -f vendor/bin/psalm ]; then
+    printf "\nRunning Psalm ...\n\n"
+    curl -L https://github.com/vimeo/psalm/releases/download/4.11.2/psalm.phar -o vendor/bin/psalm
+    chmod +x vendor/bin/psalm
 fi
+
+vendor/bin/psalm --config=vendor/endroid/quality/psalm.xml --show-info=false
