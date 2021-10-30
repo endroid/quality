@@ -31,10 +31,6 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
         composer config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
         composer require $BUNDLE_NAME @dev
 
-        if [ "$1" = "^3.4" ]; then
-            sed -i 's/excluded_http_codes/#excluded_http_codes/g' $APPLICATION_PATH/config/packages/test/monolog.yaml
-        fi
-
         bin/phpunit
     )
 
