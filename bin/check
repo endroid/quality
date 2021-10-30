@@ -2,7 +2,7 @@
 
 set -e
 
-composer require php:"^7.3||^8.0"
+composer require php:"^7.4||^8.0"
 cp -r vendor/endroid/quality/defaults/. .
 rm -rf .travis.yml
 rm -rf phpunit.xml.dist
