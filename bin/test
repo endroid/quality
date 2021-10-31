@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+vendor/bin/unit-test
+vendor/bin/functional-test

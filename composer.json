@@ -22,7 +22,8 @@
         "bin/code-quality",
         "bin/check",
         "bin/unit-test",
-        "bin/functional-test"
+        "bin/functional-test",
+        "bin/test"
     ],
     "config": {
         "sort-packages": true
