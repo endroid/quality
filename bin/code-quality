@@ -10,6 +10,7 @@ if [ ! -f vendor/bin/php-cs-fixer ]; then
     chmod +x vendor/bin/php-cs-fixer
 fi
 
+vendor/bin/php-cs-fixer --version
 vendor/bin/php-cs-fixer fix src tests --config=vendor/endroid/quality/.php-cs-fixer.php --using-cache=no || true
 
 # PHPStan
@@ -20,6 +21,7 @@ if [ ! -f vendor/bin/phpstan ]; then
     chmod +x vendor/bin/phpstan
 fi
 
+vendor/bin/phpstan --version
 vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.neon --level=8
 
 
@@ -31,4 +33,5 @@ if [ ! -f vendor/bin/psalm ]; then
     chmod +x vendor/bin/psalm
 fi
 
+vendor/bin/psalm --version
 vendor/bin/psalm --config=vendor/endroid/quality/psalm.xml --show-info=false
