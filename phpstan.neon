@@ -1,7 +1,7 @@
 parameters:
     paths:
         - src
-    excludes_analyse:
-        - %currentWorkingDirectory%/src/DependencyInjection/Configuration
+    excludePaths:
+        - %currentWorkingDirectory%/src/DependencyInjection/Configuration/*
         - %currentWorkingDirectory%/src/Migrations/*
     inferPrivatePropertyTypeFromConstructor: true

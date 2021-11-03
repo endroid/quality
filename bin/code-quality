@@ -16,11 +16,11 @@ vendor/bin/php-cs-fixer fix src tests --config=vendor/endroid/quality/.php-cs-fi
 
 if [ ! -f vendor/bin/phpstan ]; then
     printf "\nRunning PHPStan ...\n\n"
-    curl -L https://github.com/phpstan/phpstan/releases/download/0.12.99/phpstan.phar -o vendor/bin/phpstan
+    curl -L https://github.com/phpstan/phpstan/releases/download/1.0.1/phpstan.phar -o vendor/bin/phpstan
     chmod +x vendor/bin/phpstan
 fi
 
-vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.neon --level=max
+vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.neon --level=8
 
 
 # Psalm
