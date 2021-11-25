@@ -2,6 +2,8 @@
 
 set -e
 
+export SYMFONY_DEPRECATIONS_HELPER=weak
+
 if [ -f bin/phpunit ]; then
     bin/phpunit
     exit
@@ -12,6 +14,5 @@ if [ ! -f vendor/bin/phpunit ]; then
     curl -L https://phar.phpunit.de/phpunit-9.5.phar -o vendor/bin/phpunit
     chmod +x vendor/bin/phpunit
 fi
-
 
 php -d pcov.enabled=1 vendor/bin/phpunit -c vendor/endroid/quality/phpunit.xml.dist --testdox --coverage-html=tests/coverage
