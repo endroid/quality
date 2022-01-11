@@ -29,7 +29,7 @@ vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.ne
 
 if [ ! -f vendor/bin/psalm ]; then
     printf "\nRunning Psalm ...\n\n"
-    curl -L https://github.com/vimeo/psalm/releases/download/4.11.2/psalm.phar -o vendor/bin/psalm
+    curl -L https://github.com/vimeo/psalm/releases/download/4.18.1/psalm.phar -o vendor/bin/psalm
     chmod +x vendor/bin/psalm
 fi
 
