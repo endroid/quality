@@ -2,6 +2,11 @@
 
 set -e
 
+if [ -z $1 ]; then
+    echo "Please specify a Symfony version to run against"
+    exit 1
+fi
+
 if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     echo "Running functional tests ..."
@@ -9,11 +14,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
     BUNDLE_PATH=`pwd`
     BUNDLE_NAME=endroid/"$(basename "$BUNDLE_PATH")"
     APPLICATION_PATH=`pwd`/vendor/endroid/quality/application
-    SYMFONY_VERSION=^5.3
-
-    if [ ! -z $1 ]; then
-        SYMFONY_VERSION=$1
-    fi
+    SYMFONY_VERSION=$1
 
     rm -rf $APPLICATION_PATH
 
