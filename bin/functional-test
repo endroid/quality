@@ -2,12 +2,11 @@
 
 set -e
 
-SYMFONY_VERSION=$1
+SYMFONY_VERSION=6.0
 PHP_VERSION=$(php -r "echo PHP_VERSION_ID;")
 
-if [ -z $SYMFONY_VERSION ]; then
-    echo "Please specify a Symfony version to run against"
-    exit 1
+if [ ! -z $1 ]; then
+    SYMFONY_VERSION=$1
 fi
 
 if [ $(echo "$SYMFONY_VERSION >= 6.0 && $PHP_VERSION <= 80000" | bc -l) -eq 1 ]; then
