@@ -24,7 +24,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     rm -rf $APPLICATION_PATH
 
-    composer create-project --no-progress symfony/website-skeleton:^$SYMFONY_VERSION $APPLICATION_PATH --no-interaction
+    composer create-project --no-progress symfony/skeleton:^$SYMFONY_VERSION $APPLICATION_PATH --webapp --no-interaction
 
     cp -r vendor/endroid/quality/application-base/* $APPLICATION_PATH
     cp -r tests/application/* $APPLICATION_PATH
