@@ -23,15 +23,3 @@ fi
 
 vendor/bin/phpstan --version
 vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.neon --level=8
-
-
-# Psalm
-
-if [ ! -f vendor/bin/psalm ]; then
-    printf "\nRunning Psalm ...\n\n"
-    curl -L https://github.com/vimeo/psalm/releases/download/4.23.0/psalm.phar -o vendor/bin/psalm
-    chmod +x vendor/bin/psalm
-fi
-
-vendor/bin/psalm --version
-vendor/bin/psalm --config=vendor/endroid/quality/psalm.xml --show-info=false
