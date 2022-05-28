@@ -25,7 +25,6 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
     rm -rf $APPLICATION_PATH
 
     composer create-project --no-progress symfony/skeleton:^$SYMFONY_VERSION $APPLICATION_PATH --no-interaction
-    composer require symfony/browser-kit symfony/test-pack --no-interaction
 
     cp -r vendor/endroid/quality/application-base/* $APPLICATION_PATH
     cp -r tests/application/* $APPLICATION_PATH
@@ -38,6 +37,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
         composer config prefer-stable true
         composer config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
         composer require $BUNDLE_NAME @dev
+        composer require webapp symfony/test-pack --no-interaction
 
         bin/phpunit
     )
