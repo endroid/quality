@@ -3,10 +3,15 @@
 set -e
 
 SYMFONY_VERSION=6.0
+SYMFONY_PACKAGE=symfony/skeleton
 PHP_VERSION=$(php -r "echo PHP_VERSION_ID;")
 
 if [ ! -z $1 ]; then
     SYMFONY_VERSION=$1
+fi
+
+if [ $(echo "$SYMFONY_VERSION < 5.0" | bc -l) -eq 1 ]; then
+    SYMFONY_PACKAGE=symfony/website-skeleton
 fi
 
 if [ $(echo "$SYMFONY_VERSION >= 6.0 && $PHP_VERSION <= 80000" | bc -l) -eq 1 ]; then
@@ -24,7 +29,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     rm -rf $APPLICATION_PATH
 
-    composer create-project --no-progress symfony/skeleton:^$SYMFONY_VERSION $APPLICATION_PATH --no-interaction
+    composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION $APPLICATION_PATH --no-interaction
 
     cp -r vendor/endroid/quality/application-base/* $APPLICATION_PATH
     cp -r tests/application/* $APPLICATION_PATH
@@ -37,7 +42,10 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
         composer config prefer-stable true
         composer config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
         composer require $BUNDLE_NAME @dev
-        composer require webapp symfony/test-pack --no-interaction
+
+        if [ $(echo "$SYMFONY_VERSION >= 5.0" | bc -l) -eq 1 ]; then
+            composer require webapp symfony/test-pack --no-interaction
+        fi
 
         bin/phpunit
     )
