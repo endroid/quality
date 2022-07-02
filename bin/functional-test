@@ -38,6 +38,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     (
         cd $APPLICATION_PATH
+        composer config --no-plugins allow-plugins.endroid/installer true
         composer config extra.symfony.allow-contrib true
         composer config prefer-stable true
         composer config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
