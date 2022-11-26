@@ -6,7 +6,7 @@ set -e
 
 if [ ! -f vendor/bin/php-cs-fixer ]; then
     printf "\nRunning CS Fixer ...\n\n"
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.8.0/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.13.0/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
     chmod +x vendor/bin/php-cs-fixer
 fi
 
@@ -17,7 +17,7 @@ vendor/bin/php-cs-fixer fix src tests --config=vendor/endroid/quality/.php-cs-fi
 
 if [ ! -f vendor/bin/phpstan ]; then
     printf "\nRunning PHPStan ...\n\n"
-    curl -L https://github.com/phpstan/phpstan/releases/download/1.7.2/phpstan.phar -o vendor/bin/phpstan
+    curl -L https://github.com/phpstan/phpstan/releases/download/1.9.2/phpstan.phar -o vendor/bin/phpstan
     chmod +x vendor/bin/phpstan
 fi
 

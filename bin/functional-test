@@ -14,11 +14,6 @@ if [ $(echo "$SYMFONY_VERSION < 5.0" | bc -l) -eq 1 ]; then
     SYMFONY_PACKAGE=symfony/website-skeleton
 fi
 
-if [ $(echo "$SYMFONY_VERSION >= 6.0 && $PHP_VERSION <= 80000" | bc -l) -eq 1 ]; then
-    echo "Skipping because Symfony $SYMFONY_VERSION is incompatible with PHP $PHP_VERSION"
-    exit 0
-fi
-
 if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     echo "Running functional tests ..."
