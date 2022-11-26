@@ -23,7 +23,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
     composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION $APPLICATION_PATH --no-interaction
 
     cp -r vendor/endroid/quality/application-base/* $APPLICATION_PATH
-    cp -r tests/application/* $APPLICATION_PATH
+    cp -rT tests/application $APPLICATION_PATH
     mkdir -p $APPLICATION_PATH/vendor/endroid
     rsync -a --exclude tests --exclude vendor $BUNDLE_PATH $APPLICATION_PATH/vendor/endroid
 
