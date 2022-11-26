@@ -10,10 +10,6 @@ if [ ! -z $1 ]; then
     SYMFONY_VERSION=$1
 fi
 
-if [ $(echo "$SYMFONY_VERSION < 5.0" | bc -l) -eq 1 ]; then
-    SYMFONY_PACKAGE=symfony/website-skeleton
-fi
-
 if [[ `basename "$PWD"` == *"-bundle" ]]; then
 
     echo "Running functional tests ..."
@@ -38,10 +34,7 @@ if [[ `basename "$PWD"` == *"-bundle" ]]; then
         composer config prefer-stable true
         composer config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
         composer require $BUNDLE_NAME @dev
-
-        if [ $(echo "$SYMFONY_VERSION >= 5.0" | bc -l) -eq 1 ]; then
-            composer require webapp symfony/test-pack --no-interaction
-        fi
+        composer require webapp symfony/test-pack --no-interaction
 
         bin/phpunit
     )
