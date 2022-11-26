@@ -6,6 +6,7 @@ composer require php:"^8.0"
 cp -r vendor/endroid/quality/defaults/. .
 rm -rf .travis.yml
 rm -rf phpunit.xml.dist
+composer config --no-plugins allow-plugins.endroid/installer true
 
 vendor/bin/code-quality
 vendor/bin/unit-test
