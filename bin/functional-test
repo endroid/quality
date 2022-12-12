@@ -10,7 +10,7 @@ if [ ! -z $1 ]; then
     SYMFONY_VERSION=$1
 fi
 
-if [[ `basename "$PWD"` == *"-bundle" ]]; then
+if [ -d "$PWD/.install" ]; then
 
     echo "Running functional tests ..."
 
