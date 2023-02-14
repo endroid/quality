@@ -1,7 +1,7 @@
 {
     "name": "endroid/quality",
     "description": "Endroid Quality",
-    "keywords": ["endroid", "quality"],
+    "keywords": ["endroid", "quality","dev"],
     "homepage": "https://github.com/endroid/quality",
     "type": "library",
     "license": "MIT",
