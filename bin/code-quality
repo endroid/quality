@@ -2,24 +2,29 @@
 
 set -e
 
+# PHP Lint
+
+printf "\nRunning PHP Lint ...\n"
+find src/ -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
+
 # PHP CS Fixer
 
 if [ ! -f vendor/bin/php-cs-fixer ]; then
-    printf "\nRunning CS Fixer ...\n\n"
     curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.23.0/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
     chmod +x vendor/bin/php-cs-fixer
 fi
 
+printf "\nRunning CS Fixer ...\n"
 PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --version
 PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix src tests --config=vendor/endroid/quality/.php-cs-fixer.php --using-cache=no || true
 
 # PHPStan
 
 if [ ! -f vendor/bin/phpstan ]; then
-    printf "\nRunning PHPStan ...\n\n"
     curl -L https://github.com/phpstan/phpstan/releases/download/1.10.32/phpstan.phar -o vendor/bin/phpstan
     chmod +x vendor/bin/phpstan
 fi
 
+printf "\nRunning PHPStan ...\n"
 vendor/bin/phpstan --version
 vendor/bin/phpstan analyse src --configuration=vendor/endroid/quality/phpstan.neon --level=8
