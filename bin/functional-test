@@ -2,7 +2,7 @@
 
 set -e
 
-SYMFONY_VERSION=6.0
+SYMFONY_VERSION=7.0
 SYMFONY_PACKAGE=symfony/skeleton
 PHP_VERSION=$(php -r "echo PHP_VERSION_ID;")
 
@@ -20,7 +20,7 @@ if [ -d "$PWD/.install" ]; then
 
     rm -rf $APPLICATION_PATH
 
-    composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION $APPLICATION_PATH --no-interaction
+    composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION $APPLICATION_PATH --no-interaction --stability=dev
 
     cp -r vendor/endroid/quality/application-base/* $APPLICATION_PATH
     mkdir -p $APPLICATION_PATH/vendor/endroid
