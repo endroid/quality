@@ -14,8 +14,8 @@ if [ -d "$PWD/.install" ]; then
 
     echo "Running functional tests ..."
 
-    if [ $PHP_VERSION -eq 80100 ] && [ $SYMFONY_VERSION -eq 7.0 ]; then
-        echo "Symfony 7.0 requires PHP 8.2. There is no need to test this combination ..."
+    if [ $PHP_VERSION -lt 80200 ] && [ $SYMFONY_VERSION -eq 7.0 ]; then
+        echo "Symfony 7.0 requires at least PHP 8.2. No need to test in older PHP versions ..."
         exit 0
     fi
 
