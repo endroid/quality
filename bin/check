@@ -3,9 +3,18 @@
 set -e
 
 composer require php:"^8.1"
-cp -r vendor/endroid/quality/defaults/. .
+
+shopt -s dotglob
+shopt -s globstar
+
+for source in `find **/*.default`; do
+    target=${source#vendor/endroid/quality/defaults/}
+    cp "$source" "${target%.*}"
+done
+
 rm -rf .travis.yml
 rm -rf phpunit.xml.dist
+
 composer config --no-plugins allow-plugins.endroid/installer true
 
 vendor/bin/code-quality
