@@ -16,7 +16,6 @@ if [ ! -f vendor/bin/php-cs-fixer ]; then
 fi
 
 printf "\nRunning CS Fixer ...\n"
-PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --version
 PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix src tests --config=vendor/endroid/quality/.php-cs-fixer.php --using-cache=no || true
 
 # PHPStan

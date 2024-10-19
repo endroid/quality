@@ -22,7 +22,6 @@ if [ -d "$PWD/.install" ]; then
 
     composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION.0 $APPLICATION_PATH --no-interaction --stability=dev
 
-    cp -r vendor/endroid/quality/application-base/* $APPLICATION_PATH
     mkdir -p $APPLICATION_PATH/vendor/endroid
     rsync -a --exclude tests --exclude vendor $BUNDLE_PATH $APPLICATION_PATH/vendor/endroid
 
