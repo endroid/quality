@@ -2,7 +2,7 @@
 
 set -e
 
-composer require php:"^8.1"
+composer require php:"^8.2"
 
 shopt -s dotglob
 shopt -s globstar

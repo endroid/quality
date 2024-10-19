@@ -10,9 +10,10 @@ if [ -f bin/phpunit ]; then
 fi
 
 if [ ! -f vendor/bin/phpunit ]; then
-    printf "\nRunning PHPUnit ...\n\n"
-    curl -L https://phar.phpunit.de/phpunit-10.3.2.phar -o vendor/bin/phpunit
+    # https://github.com/sebastianbergmann/phpunit/tags
+    curl -L https://phar.phpunit.de/phpunit-11.4.1.phar -o vendor/bin/phpunit
     chmod +x vendor/bin/phpunit
 fi
 
+printf "\nRunning PHPUnit ...\n\n"
 php -d pcov.enabled=1 vendor/bin/phpunit -c vendor/endroid/quality/phpunit.xml.dist --testdox --coverage-html=tests/coverage

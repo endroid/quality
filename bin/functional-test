@@ -14,11 +14,6 @@ if [ -d "$PWD/.install" ]; then
 
     echo "Running functional tests ..."
 
-    if [ $PHP_VERSION -lt 80200 ] && [ $SYMFONY_VERSION -eq 7 ]; then
-        echo "Symfony 7 requires at least PHP 8.2. No need to test in older PHP versions ..."
-        exit 0
-    fi
-
     BUNDLE_PATH=`pwd`
     BUNDLE_NAME=endroid/"$(basename "$BUNDLE_PATH")"
     APPLICATION_PATH=`pwd`/vendor/endroid/quality/application
