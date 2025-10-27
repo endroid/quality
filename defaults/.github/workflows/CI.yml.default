@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.2', '8.3', '8.4']
+        php-versions: ['8.3', '8.4', '8.5']
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
@@ -54,7 +54,7 @@ jobs:
         run: |
           composer update --prefer-lowest
           vendor/bin/unit-test
-          vendor/bin/functional-test 5.4
+          vendor/bin/functional-test 6.4
 
       - name: Archive logs
         if: ${{ failure() }}

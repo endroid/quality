@@ -2,7 +2,7 @@
 
 set -e
 
-SYMFONY_VERSION=7
+SYMFONY_VERSION=8
 SYMFONY_PACKAGE=symfony/skeleton
 PHP_VERSION=$(php -r "echo PHP_VERSION_ID;")
 

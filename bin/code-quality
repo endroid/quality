@@ -11,7 +11,7 @@ find src/ -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -
 
 if [ ! -f vendor/bin/php-cs-fixer ]; then
     # https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tags
-    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.64.0/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
+    curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.89.1/php-cs-fixer.phar -o vendor/bin/php-cs-fixer
     chmod +x vendor/bin/php-cs-fixer
 fi
 
@@ -22,7 +22,7 @@ PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix src tests --config=vendor/
 
 if [ ! -f vendor/bin/phpstan ]; then
     # https://github.com/phpstan/phpstan/tags
-    curl -L https://github.com/phpstan/phpstan/releases/download/1.12.7/phpstan.phar -o vendor/bin/phpstan
+    curl -L https://github.com/phpstan/phpstan/releases/download/2.1.31/phpstan.phar -o vendor/bin/phpstan
     chmod +x vendor/bin/phpstan
 fi
 

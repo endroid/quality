@@ -11,7 +11,7 @@ fi
 
 if [ ! -f vendor/bin/phpunit ]; then
     # https://github.com/sebastianbergmann/phpunit/tags
-    curl -L https://phar.phpunit.de/phpunit-11.4.1.phar -o vendor/bin/phpunit
+    curl -L https://phar.phpunit.de/phpunit-12.4.1.phar -o vendor/bin/phpunit
     chmod +x vendor/bin/phpunit
 fi
 
