@@ -5,3 +5,4 @@ parameters:
         - %currentWorkingDirectory%/src/DependencyInjection/Configuration/*
         - %currentWorkingDirectory%/src/Migrations/*
     inferPrivatePropertyTypeFromConstructor: true
+    treatPhpDocTypesAsCertain: true
