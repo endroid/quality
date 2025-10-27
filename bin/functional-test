@@ -20,7 +20,7 @@ if [ -d "$PWD/.install" ]; then
 
     rm -rf $APPLICATION_PATH
 
-    composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION.0 $APPLICATION_PATH --no-interaction
+    composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION.0 $APPLICATION_PATH --no-interaction -s dev
 
     mkdir -p $APPLICATION_PATH/vendor/endroid
     rsync -a --exclude tests --exclude vendor $BUNDLE_PATH $APPLICATION_PATH/vendor/endroid
@@ -31,7 +31,7 @@ if [ -d "$PWD/.install" ]; then
         composer config extra.symfony.allow-contrib true
         composer config prefer-stable true
         composer config repositories.$BUNDLE_NAME path $APPLICATION_PATH/vendor/$BUNDLE_NAME
-        composer require webapp symfony/test-pack --no-interaction
+        composer require --dev symfony/test-pack --no-interaction
         composer require $BUNDLE_NAME @dev
         cp -rT $BUNDLE_PATH/tests/application $APPLICATION_PATH
         bin/console cache:clear
