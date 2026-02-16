@@ -2,7 +2,7 @@
 
 set -e
 
-vendor/bin/mago --version
-vendor/bin/mago format
-vendor/bin/mago lint
-vendor/bin/mago analyze
+vendor/bin/mago --config=vendor/endroid/quality/mago.toml --version
+vendor/bin/mago --config=vendor/endroid/quality/mago.toml format
+vendor/bin/mago --config=vendor/endroid/quality/mago.toml lint
+vendor/bin/mago --config=vendor/endroid/quality/mago.toml analyze
