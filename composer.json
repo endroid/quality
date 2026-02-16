@@ -1,7 +1,11 @@
 {
     "name": "endroid/quality",
     "description": "Endroid Quality",
-    "keywords": ["endroid", "quality","dev"],
+    "keywords": [
+        "endroid",
+        "quality",
+        "dev"
+    ],
     "homepage": "https://github.com/endroid/quality",
     "type": "library",
     "license": "MIT",
@@ -13,6 +17,7 @@
     ],
     "require": {
         "php": "^8.4",
+        "carthage-software/mago": "^1.8",
         "symfony/var-dumper": "^6.4||^7.4||^8.0"
     },
     "suggest": {
