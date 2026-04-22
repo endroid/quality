@@ -10,7 +10,7 @@ if [ ! -z $1 ]; then
     SYMFONY_VERSION=$1
 fi
 
-if [ -d "$PWD/.install" ]; then
+if grep -q '"symfony-bundle"' composer.json && [ -d "$PWD/tests/application" ]; then
 
     echo "Running functional tests ..."
 
