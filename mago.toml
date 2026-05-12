@@ -18,6 +18,7 @@ integrations = ["symfony", "phpunit"]
 
 [linter.rules]
 ambiguous-function-call = { enabled = false }
+no-error-control-operator = { enabled = false }
 literal-named-argument = { enabled = true }
 halstead = { enabled = true }
 excessive-parameter-list = { enabled = false }
