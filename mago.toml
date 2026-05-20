@@ -6,7 +6,7 @@ php-version = "8.4"
 workspace = "."
 paths = ["src/"]
 includes = ["vendor"]
-excludes = []
+excludes = ["vendor/endroid/quality/application"]
 
 [formatter]
 print-width = 120
