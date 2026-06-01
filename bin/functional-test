@@ -20,7 +20,7 @@ if grep -q '"symfony-bundle"' composer.json && [ -d "$PWD/tests/application" ]; 
 
     rm -rf $APPLICATION_PATH
 
-    composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION.0 $APPLICATION_PATH --no-interaction -s dev
+    composer create-project --no-progress $SYMFONY_PACKAGE:^$SYMFONY_VERSION.0 $APPLICATION_PATH --no-interaction
 
     mkdir -p $APPLICATION_PATH/vendor/endroid
     rsync -a --exclude tests --exclude vendor $BUNDLE_PATH $APPLICATION_PATH/vendor/endroid
