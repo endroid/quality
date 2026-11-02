@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "carthage-software/mago": "^1.8",
         "symfony/var-dumper": "^6.4||^7.4||^8.0"
     },
